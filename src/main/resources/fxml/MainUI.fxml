@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.migro.mybatis.controller.MainUIController">
+    <top>
+        <VBox>
+            <children>
+                <ToolBar minHeight="70.0" prefHeight="81.0" prefWidth="918.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Label fx:id="connectionLabel" contentDisplay="TOP" text="数据库连接">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="configsLabel" contentDisplay="TOP" text="配置">
+                            <padding>
+                                <Insets right="10.0" />
+                            </padding>
+                        </Label>
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.15" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <AnchorPane maxWidth="500.0" minWidth="300.0" prefHeight="618.0" prefWidth="300.0">
+                    <children>
+                        <TreeView fx:id="leftDBTree" layoutX="-14.0" maxWidth="0.0" prefHeight="545.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minWidth="400.0">
+                    <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <GridPane alignment="TOP_RIGHT" layoutX="5.0" layoutY="29.0" prefHeight="585.0" prefWidth="766.0" vgap="5.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0" prefWidth="140.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0" prefWidth="140.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                              <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="4.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="选中表名" GridPane.rowIndex="1" />
+                                        <TextField fx:id="tableNameField" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <Label text="保存目录" GridPane.rowIndex="2" />
+                                        <Label text="基础包名" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label text="Entity包名" GridPane.rowIndex="4" />
+                                        <Label text="Mapper包名" GridPane.rowIndex="5" />
+                                        <TextField fx:id="entityPackage" promptText="model" text="model" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <Label text="Entity父类" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                        <Label text="Mapper父类" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                        <Label text="Service接口包名" GridPane.rowIndex="6" />
+                                        <Label text="Service接口父类" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                        <Label text="Service实现类包名" GridPane.rowIndex="7" />
+                                        <Label text="controller包名" GridPane.rowIndex="8" />
+                                        <Label text="Service实现类父类" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                        <Label text="controller父类" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                        <TextField fx:id="mapperPackage" promptText="mapper" text="mapper" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="servicePackage" promptText="service" text="service" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="serviceImplPackage" promptText="service.impl" text="service.impl" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="controllerPackage" promptText="web" text="web" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="entityParent" text="top.doublewin.core.base.BaseModel" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="mapperParent" text="top.doublewin.core.base.BaseMapper" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="serviceParent" text="top.doublewin.core.base.IBaseService" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="serviceImplParent" text="top.doublewin.core.base.BaseService" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="controllerParent" text="top.doublewin.core.base.BaseController" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="basePackage" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                            <opaqueInsets>
+                                                <Insets left="5.0" right="5.0" />
+                                            </opaqueInsets>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                            <children>
+                                                <TextField fx:id="projectFolderField" promptText="d:\temp" HBox.hgrow="ALWAYS" />
+                                                <Button mnemonicParsing="false" onAction="#chooseProjectFolder" text="..." HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                        <TextField fx:id="author" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <Label text="author" GridPane.rowIndex="3" />
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#generateCode" text="生成代码">
+                                                    <styleClass>
+                                                        <String fx:value="btn-success" />
+                                                        <String fx:value="btn" />
+                                                    </styleClass>
+                                                    <HBox.margin>
+                                                        <Insets right="10.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#saveGeneratorConfig" text="保存配置">
+                                                    <HBox.margin>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                                <Button layoutX="200.0" mnemonicParsing="false" onAction="#openTargetFolder" text="打开生成文件夹">
+                                                    <HBox.margin>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                              <Label text="当前数据库" />
+                              <TextField fx:id="currentDb" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="3">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                                    </children>
+                                </GridPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>

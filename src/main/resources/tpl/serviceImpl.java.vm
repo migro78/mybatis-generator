@@ -1,0 +1,22 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Component;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service(interfaceClass = ${table.serviceName}.class)
+@Component
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${entity}, ${table.mapperName}> implements ${table.serviceName} {
+
+}
