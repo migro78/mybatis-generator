@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.migro.mybatis.convert.MyPostgresTypeConvert;
 import com.migro.mybatis.enums.FXMLPage;
 import com.migro.mybatis.model.DatabaseConfig;
 import com.migro.mybatis.model.GeneratorConfig;
@@ -290,6 +291,9 @@ public class MainUIController extends BaseFXController {
         dsc.setPassword(databaseConfig.getPassword());
         dsc.setSchemaName("public");
         dsc.setUrl(DbUtil.getConnectionUrlWithSchema(databaseConfig));
+        // 设置自定义字段类型转换
+        MyPostgresTypeConvert convert = new MyPostgresTypeConvert();
+        dsc.setTypeConvert(convert);
         mpg.setDataSource(dsc);
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
