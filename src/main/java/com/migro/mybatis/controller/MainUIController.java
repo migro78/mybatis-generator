@@ -356,6 +356,12 @@ public class MainUIController extends BaseFXController {
         if("PostgreSQL".equals(dbName)){
             ret = DbType.POSTGRE_SQL;
         }
+        if("MySQL".equals(dbName)){
+            ret = DbType.MYSQL;
+        }
+        if("MySQL_8".equals(dbName)){
+            ret = DbType.MYSQL;
+        }
         return ret;
     }
 

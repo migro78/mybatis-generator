@@ -33,7 +33,7 @@ public class MyPostgresTypeConvert implements ITypeConvert {
                 } else if (t.contains("bit")) {
                     return DbColumnType.BOOLEAN;
                 } else if (t.contains("decimal")) {
-                    return DbColumnType.BIG_DECIMAL;
+                    return DbColumnType.DOUBLE;
                 } else if (t.contains("numeric")) {
                     return DbColumnType.DOUBLE;
                 } else if (t.contains("clob")) {
