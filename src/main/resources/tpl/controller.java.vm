@@ -37,7 +37,7 @@ import ${providerClassPackage};
 @Controller
 #end
 @RequestMapping("/${table.entityPath}/")
-@Api(value = "${table.comment}接口", description = "${table.comment}接口")
+@Api(value = "${table.comment}接口", description = "${table.comment}接口", tags = {"${table.comment}接口"})
 #if(${superControllerClass})
 public class ${table.controllerName} extends ${superControllerClass}<${entity}, ${table.serviceName}> {
 #else
@@ -45,14 +45,13 @@ public class ${table.controllerName} {
 #end
 
 	@PutMapping(value = "read/page")
-	@ApiOperation(value = "查询${table.comment}")
+	@ApiOperation(value = "分页查询${table.comment}",notes ="\n分页参数示例:\n{\n  current:2,//查询第2页\n  size:20,//每页显示20条\n  orderBy:\"createTime\",//排序字段\n  sortAsc:\"N\",//排序方式[Y正序|N倒序]\n}")
 	public Object query(ModelMap modelMap, @RequestBody Map<String, Object> param) {
 		return super.pagingQuery(modelMap, param);
 	}
 
-
 	@PutMapping(value = "read/detail")
-	@ApiOperation(value = "${table.comment}详情")
+	@ApiOperation(value = "查询${table.comment}详情")
 	public Object get(ModelMap modelMap, @RequestBody ${entity} param) {
 		return super.get(modelMap,param);
 	}
