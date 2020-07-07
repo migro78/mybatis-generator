@@ -2,23 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${package.Mapper}.${table.mapperName}">
 	<select id="pagingQuery" resultType="${package.Entity}.${entity}" useCache="false">
-		select * from ${table.name}
+		select * from ${table.name} t
 		<where>
 #foreach($field in ${table.fields})
+	#if(${field.propertyType.equals("String")})
 			<if test="cm.${field.propertyName} != null and cm.${field.propertyName} != ''">
-					and ${field.name}=#{cm.${field.propertyName}}
+	#else
+    		<if test="cm.${field.propertyName} != null">
+	#end
+					and t.${field.name}=#{cm.${field.propertyName}}
 			</if>
 #end
 			<if test="cm.keyword != null and cm.keyword != ''">
 				and (
+#set($count=0)
 #foreach($field in ${table.fields})
-					or ${field.name} like CONCAT('%',#{cm.keyword},'%')
+	#if(${field.propertyType.equals("String")})
+			#if(${count}==0)
+                	t.${field.name} like CONCAT('%',#{cm.keyword},'%')
+            #else
+                	or  t.${field.name} like CONCAT('%',#{cm.keyword},'%')
+			#end
+		#set($count=$count+1)
+	#end
 #end
 				)
 			</if>
 		</where>
 		<if test="cm.orderBy != null and cm.orderBy != ''">
-			order by ${cm.orderBy}
+			order by t.${cm.orderBy}
 		</if>
 		<if test="cm.sortAsc != null and cm.sortAsc != ''">
 			${cm.sortAsc}
