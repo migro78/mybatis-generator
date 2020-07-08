@@ -5,14 +5,27 @@
 		select * from ${table.name} t
 		<where>
 #foreach($field in ${table.fields})
-	#if(${field.propertyType.equals("String")})
-			<if test="cm.${field.propertyName} != null and cm.${field.propertyName} != ''">
+	#if(${field.propertyType.equals("Date")})
 	#else
+
+		#if(${field.propertyType.equals("String")})
+			<if test="cm.${field.propertyName} != null and cm.${field.propertyName} != ''">
+		#else
     		<if test="cm.${field.propertyName} != null">
-	#end
+		#end
 					and t.${field.name}=#{cm.${field.propertyName}}
 			</if>
+	#end
 #end
+            <if test="cm.createTimeStart != null">
+                and r.create_time &gt;= #{cm.createTimeStart}
+                and r.create_time &lt;= #{cm.createTimeEnd}
+            </if>
+            <if test="cm.updateTimeStart != null">
+                and r.update_time &gt;= #{cm.updateTimeStart}
+                and r.update_time &lt;= #{cm.updateTimeEnd}
+            </if>
+
 			<if test="cm.keyword != null and cm.keyword != ''">
 				and (
 #set($count=0)

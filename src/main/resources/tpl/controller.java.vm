@@ -46,9 +46,20 @@ public class ${table.controllerName} {
 
 	@PutMapping(value = "read/page")
 	@ApiOperation(value = "分页查询${table.comment}",notes ="\n分页参数示例:\n{\n  current:2,//查询第2页\n  size:20,//每页显示20条\n  orderBy:\"createTime\",//排序字段\n  sortAsc:\"N\",//排序方式[Y正序|N倒序]\n}")
-	public Object query(ModelMap modelMap, @RequestBody Map<String, Object> param) {
+	public Object pagingQuery(ModelMap modelMap, @RequestBody Map<String, Object> param) {
+        // 处理时间段查询参数
+        DateUtil.splitDate(param,"createTime");
 		return super.pagingQuery(modelMap, param);
 	}
+
+	@PutMapping(value = "read/list")
+	@ApiOperation(value = "查询${table.comment}")
+	public Object queryList(ModelMap modelMap, @RequestBody Map<String, Object> param) {
+        // 处理时间段查询参数
+        DateUtil.splitDate(param,"createTime");
+        return super.unpagingQuery(modelMap, param);
+	}
+
 
 	@PutMapping(value = "read/detail")
 	@ApiOperation(value = "查询${table.comment}详情")
