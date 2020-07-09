@@ -2,49 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${package.Mapper}.${table.mapperName}">
 	<select id="pagingQuery" resultType="${package.Entity}.${entity}" useCache="false">
-		select * from ${table.name} t
+		select t.* from ${table.name} t
 		<where>
+            <if test="cm.id != null">
+                  and t.id=#{cm.id}
+            </if>
 #foreach($field in ${table.fields})
-	#if(${field.propertyType.equals("Date")})
+	#if(${field.propertyType.equals("Date")} or ${field.propertyType.equals("Double")})
 	#else
-
 		#if(${field.propertyType.equals("String")})
 			<if test="cm.${field.propertyName} != null and cm.${field.propertyName} != ''">
 		#else
     		<if test="cm.${field.propertyName} != null">
 		#end
-					and t.${field.name}=#{cm.${field.propertyName}}
+                  and t.${field.name}=#{cm.${field.propertyName}}
 			</if>
 	#end
 #end
             <if test="cm.createTimeStart != null">
-                and r.create_time &gt;= #{cm.createTimeStart}
-                and r.create_time &lt;= #{cm.createTimeEnd}
+                  and r.create_time &gt;= #{cm.createTimeStart}
+                  and r.create_time &lt;= #{cm.createTimeEnd}
             </if>
             <if test="cm.updateTimeStart != null">
-                and r.update_time &gt;= #{cm.updateTimeStart}
-                and r.update_time &lt;= #{cm.updateTimeEnd}
+                  and r.update_time &gt;= #{cm.updateTimeStart}
+                  and r.update_time &lt;= #{cm.updateTimeEnd}
             </if>
 
 			<if test="cm.keyword != null and cm.keyword != ''">
-				and (
+                  and (
 #set($count=0)
 #foreach($field in ${table.fields})
 	#if(${field.propertyType.equals("String")})
 			#if(${count}==0)
-                	t.${field.name} like CONCAT('%',#{cm.keyword},'%')
+                      t.${field.name} like CONCAT('%',#{cm.keyword},'%')
             #else
-                	or  t.${field.name} like CONCAT('%',#{cm.keyword},'%')
+                      or  t.${field.name} like CONCAT('%',#{cm.keyword},'%')
 			#end
 		#set($count=$count+1)
 	#end
 #end
-				)
+                  )
 			</if>
 		</where>
-		<if test="cm.orderBy != null and cm.orderBy != ''">
-			order by t.${cm.orderBy}
-		</if>
+        <if test="cm.orderBy != null and cm.orderBy != ''">
+            order by t.${cm.orderBy}
+        </if>
 		<if test="cm.sortAsc != null and cm.sortAsc != ''">
 			${cm.sortAsc}
 		</if>
